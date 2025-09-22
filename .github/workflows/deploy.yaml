@@ -1,0 +1,21 @@
+name : deploy dist folder 
+on : [push,workflow_dispatch]
+jobs :
+  test : 
+    runs-on : ubuntu-latest 
+    steps :
+      - name : getcode
+        uses : actions/checkout@v4
+      - name : instll node js 
+        uses : actions/setup-node@v4
+        with :
+           node-version : 22
+      - name : print node vesrion 
+        run : node -v
+      - name : install dependencies 
+        run : npm install 
+      - name : run test 
+        run : npm run test 
+      - name : complete job 
+        run : echo "job completed"
+
