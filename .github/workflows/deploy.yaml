@@ -20,7 +20,7 @@ jobs :
         run : echo "job completed"
   build : 
     needs : test
-    runs on : ubuntu-latest
+    runs-on : ubuntu-latest
     steps : 
       - name : get code 
         uses : actions/checkout@v4
