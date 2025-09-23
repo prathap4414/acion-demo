@@ -1,0 +1,21 @@
+name : install dependncy and node js 
+description : install node js and dependencies
+runs : 
+  using : composite
+  steps : 
+    - name : instll node js 
+      uses : actions/setup-node@v4
+      with :
+           node-version : 22
+    - name : print node vesrion 
+      run : node -v
+    - name : cacheing 
+      uses: actions/cache@v4
+      id : cache
+      with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+    - name : install dependencies 
+      if : steps.cache.outputs.cache-hit != 'true'
+      run : npm install 
+      shell : bash
